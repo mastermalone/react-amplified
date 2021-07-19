@@ -1,0 +1,68 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-core-staging-34135-authRole",
+      "UnauthRoleArn": "arn:aws:iam::872922795796:role/amplify-core-staging-34135-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::872922795796:role/amplify-core-staging-34135-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-core-staging-34135-deployment",
+      "UnauthRoleName": "amplify-core-staging-34135-unauthRole",
+      "StackName": "amplify-core-staging-34135",
+      "StackId": "arn:aws:cloudformation:us-east-1:872922795796:stack/amplify-core-staging-34135/3daf0480-d567-11eb-b7de-0a140a53308d",
+      "AmplifyAppId": "d2t7fzynd33wdx"
+    }
+  },
+  "api": {
+    "core": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "zjbovkjfmfgx7k25itsa53ocim",
+        "GraphQLAPIEndpointOutput": "https://i5fqmh6tvzbb3itdmgfjjumvse.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-zm65crltn5hanmrm3t4chnzlku"
+      },
+      "lastPushTimeStamp": "2021-07-09T05:14:32.216Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-core-staging-34135-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apicore"
+      }
+    }
+  },
+  "auth": {
+    "core": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "output": {
+        "UserPoolId": "us-east-1_7VKhJxfHw",
+        "AppClientIDWeb": "1lqm9tc0a3vpl02q7fvdjsbmcr",
+        "AppClientID": "37ck5g45b2gegvinb2ba4dpico",
+        "IdentityPoolId": "us-east-1:2c93fa2c-723a-43c2-8f33-a286827a839e",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:872922795796:userpool/us-east-1_7VKhJxfHw",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "core"
+      },
+      "lastPushTimeStamp": "2021-07-09T05:14:32.225Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-core-staging-34135-deployment/amplify-cfn-templates/auth/core-cloudformation-template.yml",
+        "logicalId": "authcore"
+      },
+      "lastPushDirHash": "E5vfZriOvO5jU0MLFcp/yKk7XTo="
+    }
+  }
+}

@@ -1,0 +1,25 @@
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  text: String
+  Author: Author @connection
+}
+
+type Author @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  UserComment: [UserComment] @connection(keyName: "byAuthor", fields: ["id"])
+}
+
+type UserComment @model @auth(rules: [{allow: public}]) @key(name: "byAuthor", fields: ["authorID"]) {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  media_upload_url: String
+  comment_text: String
+  Post: Post @connection
+  authorID: ID
+}
+ 

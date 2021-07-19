@@ -1,0 +1,26 @@
+{
+  "stackTemplatePathOrUrl": "amplify-appsync-files/4a4a1250c215db62aad73c6b90e145197a3e5c7a/states/01/cloudformation-template.json",
+  "previousMetaKey": "amplify-appsync-files/4a4a1250c215db62aad73c6b90e145197a3e5c7a/states/initial-stack/deployment-meta.json",
+  "parameters": {
+    "DynamoDBModelTableReadIOPS": "5",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "DynamoDBEnablePointInTimeRecovery": "false",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "S3DeploymentBucket": "amplify-core-staging-34135-deployment",
+    "DynamoDBModelTableWriteIOPS": "5",
+    "APIKeyExpirationEpoch": "0",
+    "env": "staging",
+    "S3DeploymentRootKey": "amplify-appsync-files/4a4a1250c215db62aad73c6b90e145197a3e5c7a/states/01",
+    "AppSyncApiName": "core",
+    "CreateAPIKey": "1",
+    "AuthCognitoUserPoolId": "NONE"
+  },
+  "stackName": "arn:aws:cloudformation:us-east-1:872922795796:stack/amplify-core-staging-34135-apicore-1RCTS4ZC2HI74/be871150-d568-11eb-8359-12f3521c88a3",
+  "tableNames": [
+    "UserComment-zjbovkjfmfgx7k25itsa53ocim-staging"
+  ],
+  "capabilities": [
+    "CAPABILITY_NAMED_IAM",
+    "CAPABILITY_AUTO_EXPAND"
+  ]
+}

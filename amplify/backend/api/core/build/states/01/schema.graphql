@@ -1,0 +1,236 @@
+type Author @aws_iam @aws_api_key {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  UserComment: UserComment @aws_iam @aws_api_key
+}
+
+type UserComment @aws_iam @aws_api_key {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  media_upload_url: String
+  comment_text: String
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelAuthorConnection @aws_api_key @aws_iam {
+  items: [Author]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelAuthorFilterInput {
+  id: ModelIDInput
+  user_name: ModelStringInput
+  user_avatar: ModelStringInput
+  and: [ModelAuthorFilterInput]
+  or: [ModelAuthorFilterInput]
+  not: ModelAuthorFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getAuthor(id: ID!): Author @aws_api_key @aws_iam
+  listAuthors(filter: ModelAuthorFilterInput, limit: Int, nextToken: String): ModelAuthorConnection @aws_api_key @aws_iam
+  syncAuthors(filter: ModelAuthorFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelAuthorConnection @aws_api_key @aws_iam
+  getUserComment(id: ID!): UserComment @aws_api_key @aws_iam
+  listUserComments(filter: ModelUserCommentFilterInput, limit: Int, nextToken: String): ModelUserCommentConnection @aws_api_key @aws_iam
+  syncUserComments(filter: ModelUserCommentFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserCommentConnection @aws_api_key @aws_iam
+}
+
+input CreateAuthorInput {
+  id: ID
+  user_name: String
+  user_avatar: String
+  _version: Int
+  authorUserCommentId: ID
+}
+
+input UpdateAuthorInput {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  _version: Int
+  authorUserCommentId: ID
+}
+
+input DeleteAuthorInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createAuthor(input: CreateAuthorInput!, condition: ModelAuthorConditionInput): Author @aws_api_key @aws_iam
+  updateAuthor(input: UpdateAuthorInput!, condition: ModelAuthorConditionInput): Author @aws_api_key @aws_iam
+  deleteAuthor(input: DeleteAuthorInput!, condition: ModelAuthorConditionInput): Author @aws_api_key @aws_iam
+  createUserComment(input: CreateUserCommentInput!, condition: ModelUserCommentConditionInput): UserComment @aws_api_key @aws_iam
+  updateUserComment(input: UpdateUserCommentInput!, condition: ModelUserCommentConditionInput): UserComment @aws_api_key @aws_iam
+  deleteUserComment(input: DeleteUserCommentInput!, condition: ModelUserCommentConditionInput): UserComment @aws_api_key @aws_iam
+}
+
+input ModelAuthorConditionInput {
+  user_name: ModelStringInput
+  user_avatar: ModelStringInput
+  and: [ModelAuthorConditionInput]
+  or: [ModelAuthorConditionInput]
+  not: ModelAuthorConditionInput
+}
+
+type Subscription {
+  onCreateAuthor: Author @aws_subscribe(mutations: ["createAuthor"]) @aws_api_key @aws_iam
+  onUpdateAuthor: Author @aws_subscribe(mutations: ["updateAuthor"]) @aws_api_key @aws_iam
+  onDeleteAuthor: Author @aws_subscribe(mutations: ["deleteAuthor"]) @aws_api_key @aws_iam
+  onCreateUserComment: UserComment @aws_subscribe(mutations: ["createUserComment"]) @aws_api_key @aws_iam
+  onUpdateUserComment: UserComment @aws_subscribe(mutations: ["updateUserComment"]) @aws_api_key @aws_iam
+  onDeleteUserComment: UserComment @aws_subscribe(mutations: ["deleteUserComment"]) @aws_api_key @aws_iam
+}
+
+type ModelUserCommentConnection @aws_api_key @aws_iam {
+  items: [UserComment]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserCommentFilterInput {
+  id: ModelIDInput
+  user_name: ModelStringInput
+  user_avatar: ModelStringInput
+  media_upload_url: ModelStringInput
+  comment_text: ModelStringInput
+  and: [ModelUserCommentFilterInput]
+  or: [ModelUserCommentFilterInput]
+  not: ModelUserCommentFilterInput
+}
+
+input CreateUserCommentInput {
+  id: ID
+  user_name: String
+  user_avatar: String
+  media_upload_url: String
+  comment_text: String
+  _version: Int
+}
+
+input UpdateUserCommentInput {
+  id: ID!
+  user_name: String
+  user_avatar: String
+  media_upload_url: String
+  comment_text: String
+  _version: Int
+}
+
+input DeleteUserCommentInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelUserCommentConditionInput {
+  user_name: ModelStringInput
+  user_avatar: ModelStringInput
+  media_upload_url: ModelStringInput
+  comment_text: ModelStringInput
+  and: [ModelUserCommentConditionInput]
+  or: [ModelUserCommentConditionInput]
+  not: ModelUserCommentConditionInput
+}
