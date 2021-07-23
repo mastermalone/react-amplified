@@ -68,6 +68,7 @@ type PresentationalComponentType<TData> = React.FunctionComponent<TData>;
 export type ContainerComponentType<TProps> = React.FunctionComponent<TProps>;
 
 interface WithHooks {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   <TProps, TData>(
     PresentationalComponent: PresentationalComponentType<TData>
   ): PresentationalComponentType<TData>;

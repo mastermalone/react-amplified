@@ -1,4 +1,5 @@
 import { HeaderProps } from ".";
+// import styles from './header.module.scss';
 
 
 const HeaderTemplate = ({ headerLinks, setThemeValue, theme }: HeaderProps) => (

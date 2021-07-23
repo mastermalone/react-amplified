@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { MouseEventHandler } from 'react'
-import withHooks, { mapHooksToProps } from 'src/common/withHooks'
-import { ThemeType } from 'src/providers/MainTheme/mainTheme'
 import useMainTheme from 'src/providers/MainTheme/useMainTheme'
+import withHooks, { mapHooksToProps } from '../../common/withHooks'
+import { ThemeType } from '../../providers/MainTheme/mainTheme'
 import HeaderTemplate from './headerTemplate'
 
 type LinkType = {
@@ -29,8 +29,27 @@ const Header = withHooks(
       setTheme(themeType)
     }, [setTheme, theme])
 
+    const mockHeaderLinks: LinkType[] = [
+      {
+        text: 'Home',
+        link: '/',
+      },
+      {
+        link: '/contact',
+        text: 'Contact Us',
+      },
+      {
+        link: '/fun-bits',
+        text: 'Fun Bits',
+      },
+      {
+        link: '/people',
+        text: 'People',
+      },
+    ]
+
     return {
-      headerLinks: headerLinks ? headerLinks : [{ text: 'Home', link: '/' }],
+      headerLinks: headerLinks ? headerLinks : mockHeaderLinks,
       setThemeValue,
       theme,
     }

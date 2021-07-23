@@ -4,12 +4,13 @@ import HomePagetemplate from './HomePageTemplate'
 
 const HomePage = withHooks(HomePagetemplate, () => {
   const [booleanVal, setBolleanVal] = useState<number>()
+
   useEffect(() => {
     console.log('Home Page Loaded')
 
     setBolleanVal(1)
     console.log('booleanVal', booleanVal)
-  }, [])
+  }, [booleanVal])
 })
 
 export default HomePage
